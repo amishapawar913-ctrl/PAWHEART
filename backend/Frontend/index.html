@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pawheart — Pet Health</title>
+  <link rel="stylesheet" href="styles.css">
+  <img src="assets/pawheartlogo.png" class="logo-img">
+</head>
+<body>
+
+  <!-- TOP BAR -->
+   <span id="userInfo" style="color:white; margin-left:10px;"></span>
+<button id="logoutBtn" class="btn ghost" style="display:none;">Logout</button>
+</div>
+  <header id="topbar" class="topbar">
+    <div class="brand">
+      <div class="brand-text">
+        <div class="logo">
+  <img src="assets/pawheartlogo.png" class="logo-img" style="width:50px; border:2px solid red;">
+  <span class="logo-text">
+    PAWHEART <span class="heart">❤️</span>
+  </span>
+</div>
+        <div class="brand-sub">Pet Health Companion</div>
+      </div>
+    </div>
+
+    <nav class="main-nav">
+      <button id="navReminders">Reminders</button>
+      <button id="navDashboard">Dashboard</button>
+      <button id="navVacc">Vaccinations</button>
+      <button id="navGroom">Grooming</button>
+      <button id="navVet">Vet Visits</button>
+      <button id="navMed">Medications</button>
+      <button id="navStore">Pet Store</button>
+    </nav>
+
+    <div class="nav-right">
+      <button id="demoBtn" class="btn ghost">Try Demo</button>
+      <button id="authBtn" class="btn">Register / Login</button>
+    </div>
+  </header>
+
+  <!-- INTRO / INFO -->
+  <section id="intro" class="page page-intro">
+    <div class="intro-card">
+      <div class="intro-left">
+        <h1>Welcome to Pawheart</h1>
+        <p class="lead">Pawheart helps you track vaccinations, grooming sessions, vet visits, medications and more — all in one place. Create an account or try the demo to see example pets and records.</p>
+        <div class="cta-row">
+          <button class="btn primary" id="getStarted">Get Started</button>
+          <button class="btn outline" id="tryDemo">Try Demo</button>
+        </div>
+      </div>
+      <div class="intro-right">
+        <img src="assets/dog.png" alt="dog" class="hero-dog">
+        <img src="assets/cat.png" alt="cat" class="hero-cat">
+      </div>
+    </div>
+  </section>
+
+  <!-- DASHBOARD -->
+  <main>
+    <section id="dashboard" class="page" style="display:none;">
+      <section id="reminders" class="page" style="display:none;">
+  <div class="page-header">
+    <h2>🔔 Reminders</h2>
+  </div>
+
+  <div id="todayReminders" class="reminder-group">
+    <h3>Today</h3>
+  </div>
+
+  <div id="upcomingReminders" class="reminder-group">
+    <h3>Upcoming</h3>
+  </div>
+</section>
+      <div class="page-header">
+        <h2>Your Pets</h2>
+        <div class="sub">Click a pet to manage records</div>
+      </div>
+
+      <div class="dashboard-top">
+        <div id="welcomeStrip" class="welcome-strip"></div>
+        <div class="actions">
+          <button class="btn primary" id="addPetBtn">+ Add Pet</button>
+        </div>
+      </div>
+
+      <d="petBreed" type="text" placeholder="Breed" required>
+          <div class="form-actions">
+            <button class="btn primary" type="submit">Save Pet</button>
+            <button class="btn ghost" type="button" id="cancelAddPet">Cancel</button>
+          </div>
+        </form>
+      </div>
+      
+      <div id="addPetForm" class="card form-card" style="display:none;">
+  <h3>Add a Pet</h3>
+  <form id="petForm">
+    <div class="row">
+      <input id="petName" type="text" placeholder="Pet name" required>
+      <select id="petType" required>
+        <option value="">Type</option>
+        <option>Dog</option>
+        <option>Cat</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <input id="petAge" type="number" placeholder="Age" required>
+      <input id="petBreed" type="text" placeholder="Breed" required>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn primary">Save Pet</button>
+      <button type="button" id="cancelAddPet" class="btn ghost">Cancel</button>
+    </div>
+  </form>
+</div>
+
+      <div id="petsContainer" class="grid"></div>
+    </section>
+
+    <!-- Vaccinations -->
+    <section id="vaccinations" class="page" style="display:none;">
+      <div id="vaccForm" class="card form-card" style="display:none;">
+  <h3>Add Vaccination</h3>
+
+  <div class="row">
+    <input id="vaccName" type="text" placeholder="Vaccine name (Rabies)">
+    <input id="vaccDate" type="date">
+    <input type="date" id="vaccReminder" placeholder="Reminder Date">
+  </div>
+
+  <input id="vaccNotes" type="text" placeholder="Notes">
+
+  <div class="form-actions">
+    <button class="btn primary" onclick="saveVaccination()">Save</button>
+    <button class="btn ghost" onclick="closeVaccForm()">Cancel</button>
+  </div>
+</div>
+      <div class="page-header"><h2>Vaccinations</h2></div>
+      <div id="vaccinationContainer" class="grid"></div>
+      <div class="center-row">
+        <button class="btn primary" id="addVaccBtn">+ Add Vaccination</button>
+      </div>
+    </section>
+
+    <!-- Grooming -->
+    <section id="grooming" class="page" style="display:none;">
+      <section id="reminders" class="page" style="display:none;">
+  <div class="page-header">
+    <h2>🔔 Reminders</h2>
+  </div>
+
+  <div id="todayReminders" class="reminder-group">
+    <h3>Today</h3>
+  </div>
+
+  <div id="upcomingReminders" class="reminder-group">
+    <h3>Upcoming</h3>
+  </div>
+</section>
+      <div id="groomingContainer" class="grid"></div>
+      <div id="groomForm" class="card form-card" style="display:none;">
+  <h3>Add Grooming</h3>
+
+  <div class="row">
+    <input id="groomService" type="text" placeholder="Service (Bath, Haircut)" required>
+    <input id="groomDate" type="date" required>
+    <input type="date" id="groomReminder">
+  </div>
+
+  <input id="groomNotes" type="text" placeholder="Notes">
+
+  <div class="form-actions">
+    <button class="btn primary" onclick="saveGrooming()">Save</button>
+    <button class="btn ghost" onclick="closeGroomForm()">Cancel</button>
+  </div>
+</div>
+      <div class="page-header"><h2>Grooming</h2></div>
+      <div id="groomingContainer" class="grid"></div>
+      <div class="center-row">
+        <button class="btn primary" id="addGroomBtn">+ Add Grooming</button>
+      </div>
+    </section>
+
+    <!-- Vet Visits -->
+    <section id="vet" class="page" style="display:none;">
+      <section id="reminders" class="page" style="display:none;">
+  <div class="page-header">
+    <h2>🔔 Reminders</h2>
+  </div>
+
+  <div id="todayReminders" class="reminder-group">
+    <h3>Today</h3>
+  </div>
+
+  <div id="upcomingReminders" class="reminder-group">
+    <h3>Upcoming</h3>
+  </div>
+</section>
+      <div id="vetForm" class="card form-card" style="display:none;">
+  <h3>Add Vet Visit</h3>
+
+  <div class="row">
+    <input id="vetDoctor" type="text" placeholder="Doctor name">
+    <input id="vetDate" type="date">
+    <input type="date" id="vetReminder">
+  </div>
+
+  <input id="vetNotes" type="text" placeholder="Notes">
+
+  <div class="form-actions">
+    <button class="btn primary" onclick="saveVet()">Save</button>
+    <button class="btn ghost" onclick="closeVetForm()">Cancel</button>
+  </div>
+</div>
+      <div class="page-header"><h2>Vet Visits</h2></div>
+      <div id="vetContainer" class="grid"></div>
+      <div class="center-row">
+        <button class="btn primary" id="addVetBtn">+ Add Vet Visit</button>
+      </div>
+    </section>
+
+    <!-- Medications -->
+    <section id="medications" class="page" style="display:none;">
+      <section id="reminders" class="page" style="display:none;">
+  <div class="page-header">
+    <h2>🔔 Reminders</h2>
+  </div>
+
+  <div id="todayReminders" class="reminder-group">
+    <h3>Today</h3>
+  </div>
+
+  <div id="upcomingReminders" class="reminder-group">
+    <h3>Upcoming</h3>
+  </div>
+</section>
+      <div id="medForm" class="card form-card" style="display:none;">
+  <h3>Add Medication</h3>
+
+  <div class="row">
+    <input id="medName" type="text" placeholder="Medicine name">
+    <input id="medDate" type="date">
+    <input type="date" id="medReminder">
+  </div>
+
+  <input id="medNotes" type="text" placeholder="Notes">
+
+  <div class="form-actions">
+    <button class="btn primary" onclick="saveMedication()">Save</button>
+    <button class="btn ghost" onclick="closeMedForm()">Cancel</button>
+  </div>
+</div>
+      <div class="page-header"><h2>Medications</h2></div>
+      <div id="medicationContainer" class="grid"></div>
+      <div class="center-row">
+        <button class="btn primary" id="addMedBtn">+ Add Medication</button>
+      </div>
+    </section>
+
+    <!-- Store -->
+    <section id="store" class="page" style="display:none;">
+     
+      <div class="page-header"><h2>Pet Store</h2></div>
+      <div id="categoryFilters" style="margin-bottom:12px;">
+  <button class="btn ghost" onclick="filterCategory('all')">All</button>
+  <button class="btn ghost" onclick="filterCategory('dog')">Dog</button>
+  <button class="btn ghost" onclick="filterCategory('cat')">Cat</button>
+  <button class="btn ghost" onclick="filterCategory('toy')">Toys</button>
+  <button class="btn ghost" onclick="filterCategory('grooming')">Grooming</button>
+  <button class="btn ghost" onclick="filterCategory('accessory')">Accessories</button>
+</div>
+      <input 
+  type="text" 
+  id="storeSearch" 
+  placeholder="Search products..." 
+  style="padding:10px;width:100%;margin-bottom:10px;border-radius:8px;border:1px solid #eee;">
+      <div id="storeContainer" class="store-grid"></div>
+    </section>
+    <section id="cart" class="page">
+  <h2 style="color:white;">🛒 Your Cart</h2>
+
+  <div id="cartItems"></div>
+
+  <h3 id="cartTotal" style="color:white;">Total: ₹0</h3>
+
+  <button class="btn primary" onclick="checkout()">Checkout</button>
+</section>
+  </main>
+
+  <!-- AUTH MODAL (opens on demand) -->
+  <div id="authModal" class="modal" style="display:none;">
+    <div class="modal-card">
+      <button class="close" id="authClose">✕</button>
+      <img src="assets/pawheartlogo.png" class="modal-logo">
+      <h2 id="authTidiv id="addPetForm" class="card form-card" style="display:none;">
+        <h3>Add a Pet</h3>
+        <form id="petForm">
+          <div class="row">
+  <input id="petName" type="text" placeholder="Pet name" required>
+  <select id="petType" required>
+    <option value="">Type</option>
+    <option>Dog</option>
+    <option>Cat</option>
+  </select>
+</div>
+
+<div class="row">
+  <input id="petAge" type="number" placeholder="Age (years)" required>
+  <input id="petHealth" type="number" placeholder="Health %" required>
+</div>
+
+<input id="petBreed" type="text" placeholder="Breed">
+
+<div class="form-actions">
+  <button class="btn primary" type="submit">Save Pet</button>
+  <button class="btn ghost" type="button" id="cancelAddPet">Cancel</button>
+</div>
+
+  <footer class="footer">
+    <div>© 2025 Pawheart • Made with ♥</div>
+  </footer>
+  <script src="script.js"></script>
+  <!-- PRODUCT MODAL -->
+<div id="productModal" class="modal" style="display:none;">
+  <div class="modal-card" style="max-width:400px;">
+    
+    <button onclick="closeProductModal()" class="close">✕</button>
+
+    <img id="modalImg" style="width:100%; border-radius:10px;">
+
+    <h2 id="modalName"></h2>
+    <p id="modalPrice"></p>
+    <p id="modalDesc" style="color:gray;"></p>
+
+    <button class="btn primary" onclick="addModalToCart()">Add to Cart 🛒</button>
+
+  </div>
+</div>
+</body>
+</html>
